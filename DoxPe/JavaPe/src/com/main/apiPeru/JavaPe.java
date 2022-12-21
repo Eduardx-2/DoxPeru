@@ -24,16 +24,16 @@ public class JavaPe {
 	public static final void sendRequestsPost() throws IOException{
 	    String url_Send = String.format("http://app17.susalud.gob.pe:8081/webservices/ws_procesos/obtenerDatosReniec?numero=%d", dniCn);
 	    URL url = new URL(url_Send);
-        HttpURLConnection httpConnect = (HttpURLConnection) url.openConnection();
-        httpConnect.setRequestMethod("GET");
-        httpConnect.setRequestProperty("User-Agent", "Mozilla/5.0");
-        httpConnect.setRequestProperty("Content-Type", "application/json");
-        httpConnect.connect();
-        int respuestaCode = httpConnect.getResponseCode();
-        System.out.printf("CODE SERVER => [%d]", respuestaCode);
-        if(respuestaCode == HttpURLConnection.HTTP_OK) {
+            HttpURLConnection httpConnect = (HttpURLConnection) url.openConnection();
+            httpConnect.setRequestMethod("GET");
+            httpConnect.setRequestProperty("User-Agent", "Mozilla/5.0");
+            httpConnect.setRequestProperty("Content-Type", "application/json");
+            httpConnect.connect();
+           int respuestaCode = httpConnect.getResponseCode();
+           System.out.printf("CODE SERVER => [%d]", respuestaCode);
+           if(respuestaCode == HttpURLConnection.HTTP_OK) {
         	BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-            String inputLine;
+                String inputLine;
          
             while ((inputLine = in .readLine()) != null) {
                   json = inputLine;
@@ -48,7 +48,7 @@ public class JavaPe {
         }
       		
 	}
-	public static void jsonParsing(String data) {
+	private static void jsonParsing(String data) {
 		Gson gson = new Gson();
 		JsonResponse p = gson.fromJson(data, JsonResponse.class);
 		System.out.println(p.toString());
